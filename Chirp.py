@@ -12,6 +12,7 @@ sys.path.append('Adafruit_PWM_Servo_Driver')
 import pygame
 pygame.mixer.init()
 pygame.mixer.music.load("test.wav")
+pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play()
 
 # ===========================================================================
