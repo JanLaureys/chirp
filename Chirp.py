@@ -1,6 +1,10 @@
 #!/usr/bin/python
+import sys
 
-from ./Adafruit_PWM_Servo_Driver/Adafruit_PWM_Servo_Driver import PWM
+sys.path.append('Adafruit_PWM_Servo_Driver')
+
+
+from Adafruit_PWM_Servo_Driver import PWM
 import time
 
 # ===========================================================================
