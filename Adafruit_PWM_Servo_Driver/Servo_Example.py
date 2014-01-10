@@ -1,17 +1,17 @@
 #!/usr/bin/python
 
-from chirp import PWM
+from Adafruit_PWM_Servo_Driver import PWM
 import time
 
 # ===========================================================================
-# Controlling the servo
+# Example Code
 # ===========================================================================
 
 # Initialise the PWM device using the default address
 # bmp = PWM(0x40, debug=True)
 pwm = PWM(0x40, debug=True)
 
-servoMin = 165  # Min pulse length out of 4096
+servoMin = 150  # Min pulse length out of 4096
 servoMax = 600  # Max pulse length out of 4096
 
 def setServoPulse(channel, pulse):
@@ -26,11 +26,11 @@ def setServoPulse(channel, pulse):
 
 pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
 while (True):
-  # Change speed of continuous servo on channel
-  pwm.setPWM(3, 0, servoMin)
-  time.sleep(5)
-  pwm.setPWM(3, 0, servoMax)
-  time.sleep(0.333)
+  # Change speed of continuous servo on channel O
+  pwm.setPWM(0, 0, servoMin)
+  time.sleep(1)
+  pwm.setPWM(0, 0, servoMax)
+  time.sleep(1)
 
 
 
