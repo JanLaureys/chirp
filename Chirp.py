@@ -1,15 +1,25 @@
 #!/usr/bin/python
-import sys
 
+# Settings paths on where to look for modules
+
+import sys
 sys.path.append('Adafruit_PWM_Servo_Driver')
 
+# ===========================================================================
+# Playing an audio file
+# ===========================================================================
 
-from Adafruit_PWM_Servo_Driver import PWM
-import time
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("test.wav")
+pygame.mixer.music.play()
 
 # ===========================================================================
 # Controlling the servo
 # ===========================================================================
+
+from Adafruit_PWM_Servo_Driver import PWM
+import time
 
 # Initialise the PWM device using the default address
 # bmp = PWM(0x40, debug=True)
@@ -32,7 +42,7 @@ pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
 while (True):
   # Change speed of continuous servo on channel
   pwm.setPWM(3, 0, servoMin)
-  time.sleep(5)
+  time.sleep(0.333)
   pwm.setPWM(3, 0, servoMax)
   time.sleep(0.333)
 
