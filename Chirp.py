@@ -11,11 +11,11 @@ sys.path.append('python-twitter-1.1')
 # ===========================================================================
 
 import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("test.wav")
+pygame.mixer.music.set_volume(1.0)
 
-def chirp_sound:
-  pygame.mixer.init()
-  pygame.mixer.music.load("test.wav")
-  pygame.mixer.music.set_volume(1.0)
+def chirp_sound():
   pygame.mixer.music.play()
 
 # ===========================================================================
@@ -45,7 +45,7 @@ def setServoPulse(channel, pulse):
   pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
   pwm.setPWM(3,0,servoMin)                # Reset the motor to the initial setting
 
-def chirp_motor:
+def chirp_motor():
   pwm.setPWM(3, 0, servoMin)
   time.sleep(0.333)
   pwm.setPWM(3, 0, servoMax)
@@ -58,7 +58,10 @@ def chirp_motor:
 
 import twitter
 
+print "Logging in to twitter"
+
 api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow', consumer_secret='9fnAtbJafPZHXoFjaBiGJlM73hSW30bpKdaF9HuOw', access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU', access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
+
 
 credentials = api.VerifyCredentials()
 
@@ -68,7 +71,15 @@ user = api.GetUser(credentials.id)
 
 print user.notifications
 
-chirp_motor
+print "Sending a test chirp in 3 seconds"
+time.sleep(1)
+print "... 2"
+time.sleep(1)
+print "... 1"
+time.sleep(1)
+
+chirp_motor()
+chirp_sound()
 
 
 
