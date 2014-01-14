@@ -123,7 +123,6 @@ chirp.favourite_count = chirp.user.favourites_count
 
 # Set the initial direct message
 firstdm = api.GetDirectMessages(count=1)
-print dm
 
 for dm in firstdm:
   chirp.last_direct_message = dm.id
