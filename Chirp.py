@@ -17,7 +17,11 @@ api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow',
                       access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU',
                       access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
 
-print api.VerifyCredentials()
+credentials = api.VerifyCredentials()
+
+print "Welcome " % credentials.name
+
+
 
 # ===========================================================================
 # Playing an audio file
@@ -54,12 +58,13 @@ def setServoPulse(channel, pulse):
   pwm.setPWM(channel, 0, pulse)
 
 pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
-while (True):
+#
+#while (True):
   # Change speed of continuous servo on channel
-  pwm.setPWM(3, 0, servoMin)
-  time.sleep(0.333)
-  pwm.setPWM(3, 0, servoMax)
-  time.sleep(0.333)
+#  pwm.setPWM(3, 0, servoMin)
+#  time.sleep(0.333)
+#  pwm.setPWM(3, 0, servoMax)
+#  time.sleep(0.333)
 
 
 
