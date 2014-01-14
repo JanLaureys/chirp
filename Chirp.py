@@ -10,7 +10,7 @@ sys.path.append('python-twitter-1.1')
 # Setting up the base class
 # ===========================================================================
 
-class Chirpy(Object):
+class Chirpy(object):
   user = ""
   last_direct_message = ""
   follower_count = 0
@@ -122,9 +122,11 @@ chirp.user = api.GetUser(credentials.id)
 chirp.favourite_count = chirp.user.favourites_count
 
 # Set the initial direct message
-dm = api.GetDirectMessages(count=1)
+firstdm = api.GetDirectMessages(count=1)
 print dm
-chirp.last_direct_message = dm.id
+
+for dm in firstdm:
+  chirp.last_direct_message = dm.id
 
 def twitter_poll():
   print "Initializing twitter poll"
