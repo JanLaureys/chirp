@@ -12,10 +12,10 @@ sys.path.append('python-twitter-1.1')
 
 import twitter
 
-api = twitter.Api(consumer_key='NtcgNNt2xzIXk1vUU6Mpw',
-                      consumer_secret='qp9wvXHEpWG86ZvgTW4dPGYdgNAaYiGsgOjzrmm8jU',
-                      access_token_key='16133-b9Dx0dj9CF3oQZugA88QNTO3StBeiAYZMoI3M0i5E',
-                      access_token_secret='gn1j7cRkBVjEmh9HjJ5QRn0knHP3htkwlpy96FPE')
+api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow',
+                      consumer_secret='9fnAtbJafPZHXoFjaBiGJlM73hSW30bpKdaF9HuOw',
+                      access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU',
+                      access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
 
 print api.VerifyCredentials()
 
