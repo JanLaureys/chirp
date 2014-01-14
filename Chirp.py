@@ -4,6 +4,7 @@
 
 import sys
 sys.path.append('Adafruit_PWM_Servo_Driver')
+sys.path.append('python-twitter-1.1')
 
 # ===========================================================================
 # Playing an audio file
