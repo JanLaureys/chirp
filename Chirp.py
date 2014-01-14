@@ -94,17 +94,19 @@ def chirp_get_direct_messages():
   print dms
 
   for dm in dms:
+    chirp.last_direct_message = dm.id
     chirp_stage('dm', 1)
 
 def chirp_cycle():
   print "chirp_cycle"
   for follower in range(0, chirp.staged_follower):
     chirp_motor()
-    sleep(1)
+    time.sleep(1)
 
   for dm in range(0, chirp.staged_directmessage):
+
     chirp_motor()
-    sleep(1)
+    time.sleep(1)
 
   chirp.staged_follower = 0
   chirp.staged_directmessage = 0
@@ -144,7 +146,7 @@ def twitter_poll():
   chirp_cycle()
 
   print "Going to sleep 180"
-  time.sleep(180)
+  time.sleep(60)
   twitter_poll()
 
 # Start the poller
