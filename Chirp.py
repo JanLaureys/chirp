@@ -92,6 +92,8 @@ def twitter_poll():
   print api.GetAverageSleepTime()
   time.sleep(api.GetAverageSleepTime())
 
+twitter_poll()
+
 
 
 
