@@ -7,6 +7,19 @@ sys.path.append('Adafruit_PWM_Servo_Driver')
 sys.path.append('python-twitter-1.1')
 
 # ===========================================================================
+# Tweeting like a baws
+# ===========================================================================
+
+import twitter
+
+api = twitter.Api(consumer_key='NtcgNNt2xzIXk1vUU6Mpw',
+                      consumer_secret='qp9wvXHEpWG86ZvgTW4dPGYdgNAaYiGsgOjzrmm8jU',
+                      access_token_key='16133-b9Dx0dj9CF3oQZugA88QNTO3StBeiAYZMoI3M0i5E',
+                      access_token_secret='gn1j7cRkBVjEmh9HjJ5QRn0knHP3htkwlpy96FPE')
+
+print api.VerifyCredentials()
+
+# ===========================================================================
 # Playing an audio file
 # ===========================================================================
 
