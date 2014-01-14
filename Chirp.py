@@ -84,13 +84,13 @@ def twitter_poll():
   chirp.user = api.GetUser(credentials.id)
 
   if(chirp.favourite_count == chirp.user.favourites_count):
-    # Do nothing
+    print "Nothing to see here guys"
   else: 
     chirp_motor()
 
-  print "Going to sleep for a few minutes"
-  print api.GetAverageSleepTime()
-  time.sleep(api.GetAverageSleepTime())
+  print "Going to sleep for a minute"
+  time.sleep(60)
+  twitter_poll()
 
 twitter_poll()
 
