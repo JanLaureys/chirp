@@ -7,8 +7,8 @@ import twitter
 
 if __name__ == '__main__':
     #bear:
-    api = twitter.Api(consumer_key='QR24C2VZYhjAtkYFYHAuEQ',
-                       consumer_secret='V0EZeEhMn67TYfqEOUP6Hzhn1j0Ap1KifdoIJnd96eE',
+    api = twitter.Api(consumer_key='NtcgNNt2xzIXk1vUU6Mpw',
+                       consumer_secret='qp9wvXHEpWG86ZvgTW4dPGYdgNAaYiGsgOjzrmm8jU',
                        access_token_key='16133-b9Dx0dj9CF3oQZugA88QNTO3StBeiAYZMoI3M0i5E',
                        access_token_secret='gn1j7cRkBVjEmh9HjJ5QRn0knHP3htkwlpy96FPE',
                        debugHTTP=True)
