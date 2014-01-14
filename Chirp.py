@@ -10,7 +10,7 @@ sys.path.append('python-twitter-1.1')
 # Setting up the base class
 # ===========================================================================
 
-class Chirpy(Object):
+class Chirpy(object):
   user = ""
   last_direct_message = ""
   follower_count = 0
