@@ -82,7 +82,7 @@ def chirp_get_followers():
   newFollowersCount = chirp.user.followers_count - chirp.follower_count
   chirp.follower_count = chirp.user.followers_count
 
-  if(newFollowers > 0):
+  if(newFollowersCount > 0):
     chirp_stage('followser', newFollowersCount)
 
 def chirp_get_direct_messages():
