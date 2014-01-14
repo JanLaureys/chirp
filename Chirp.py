@@ -7,36 +7,16 @@ sys.path.append('Adafruit_PWM_Servo_Driver')
 sys.path.append('python-twitter-1.1')
 
 # ===========================================================================
-# Tweeting like a baws
-# ===========================================================================
-
-import twitter
-
-api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow',
-                      consumer_secret='9fnAtbJafPZHXoFjaBiGJlM73hSW30bpKdaF9HuOw',
-                      access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU',
-                      access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
-
-credentials = api.VerifyCredentials()
-
-print credentials
-
-user = api.GetUser(credentials.id)
-
-print user.notifications
-
-
-
-
-# ===========================================================================
 # Playing an audio file
 # ===========================================================================
 
 import pygame
-pygame.mixer.init()
-pygame.mixer.music.load("test.wav")
-pygame.mixer.music.set_volume(1.0)
-pygame.mixer.music.play()
+
+def chirp_sound:
+  pygame.mixer.init()
+  pygame.mixer.music.load("test.wav")
+  pygame.mixer.music.set_volume(1.0)
+  pygame.mixer.music.play()
 
 # ===========================================================================
 # Controlling the servo
@@ -62,14 +42,35 @@ def setServoPulse(channel, pulse):
   pulse /= pulseLength
   pwm.setPWM(channel, 0, pulse)
 
-pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
-#
-#while (True):
-  # Change speed of continuous servo on channel
-#  pwm.setPWM(3, 0, servoMin)
-#  time.sleep(0.333)
-#  pwm.setPWM(3, 0, servoMax)
-#  time.sleep(0.333)
+  pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
+  pwm.setPWM(3,0,servoMin)                # Reset the motor to the initial setting
+
+def chirp_motor:
+  pwm.setPWM(3, 0, servoMin)
+  time.sleep(0.333)
+  pwm.setPWM(3, 0, servoMax)
+  time.sleep(0.5)
+  pwm.setPWM(3,0, servoMin)
+
+# ===========================================================================
+# Tweeting like a baws
+# ===========================================================================
+
+import twitter
+
+api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow', consumer_secret='9fnAtbJafPZHXoFjaBiGJlM73hSW30bpKdaF9HuOw', access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU', access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
+
+credentials = api.VerifyCredentials()
+
+print credentials
+
+user = api.GetUser(credentials.id)
+
+print user.notifications
+
+chirp_motor
+
+
 
 
 
