@@ -69,6 +69,7 @@ def chirp_motor():
   pwm.setPWM(3,0, servoMin)
 
 def chirp_stage(type="", count= "1"):
+  print "Chirp_stage"
   if(type=="retweet"):
     chirp.staged_retweet = chirp.staged_retweet + count
   if(type=="follower"):
@@ -79,6 +80,7 @@ def chirp_stage(type="", count= "1"):
     chirp.staged_directmessage = chirp.staged_directmessage + count
 
 def chirp_get_followers():
+  print "chirp_get_followers"
   newFollowersCount = chirp.user.followers_count - chirp.follower_count
   chirp.follower_count = chirp.user.followers_count
 
@@ -86,6 +88,7 @@ def chirp_get_followers():
     chirp_stage('followser', newFollowersCount)
 
 def chirp_get_direct_messages():
+  print "chirp_get_direct_messages"
   dms = api.GetDirectMessages(since_id = chirp.last_direct_message)
   print "All direct messages since the last one"
   print dms
@@ -94,6 +97,7 @@ def chirp_get_direct_messages():
     chirp_stage('dm', 1)
 
 def chirp_cycle():
+  print "chirp_cycle"
   for follower in range(0, chirp.staged_follower):
     chirp_motor()
     sleep(1)
@@ -128,16 +132,18 @@ for dm in firstdm:
   chirp.last_direct_message = dm.id
 
 def twitter_poll():
-  print "Initializing twitter poll"
+  print "twitter_poll"
 
+  # Reload the user object
   chirp.user = api.GetUser(credentials.id)
 
+  # Get things from the user
   chirp_get_followers()
   chirp_get_direct_messages()
 
   chirp_cycle()
 
-
+  print "Going to sleep 180"
   time.sleep(180)
   twitter_poll()
 
