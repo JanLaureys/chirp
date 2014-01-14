@@ -19,7 +19,7 @@ api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow',
 
 credentials = api.VerifyCredentials()
 
-print credentials.name
+print credentials
 
 
 
