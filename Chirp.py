@@ -21,11 +21,9 @@ credentials = api.VerifyCredentials()
 
 print credentials
 
-user = api.getUser(credentials.id)
+user = api.GetUser(credentials.id)
 
-notifications = user.getNotifications()
-
-print notifications
+print user.notifications
 
 
 
