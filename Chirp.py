@@ -167,7 +167,7 @@ for lm in lastmention:
   chirp.last_mention = lm.id
 
 def twitter_poll():
-  print "twitter_poll"
+  print "Polling twitter for the latest date"
 
   # Reload the user object
   chirp.user = api.GetUser(credentials.id)
@@ -179,7 +179,9 @@ def twitter_poll():
 
   chirp_cycle()
 
-  print "Going to sleep 180"
+  print "Going to sleep for a minute"
+  print "=================================================================="
+
   time.sleep(60)
   twitter_poll()
 
