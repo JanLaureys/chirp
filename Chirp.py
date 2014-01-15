@@ -97,6 +97,7 @@ def chirp_nap():
   for i in range(0, config["sleep_time"]):
     dash = '='
     print dash,
+    time.sleep(1)
 
 def chirp_stage(type="", count= "1"):
   print "Chirp_stage"
@@ -208,6 +209,7 @@ def twitter_poll():
   chirp_cycle()
   # Taking a nap for a minute
   chirp_nap()
+  twitter_poll()
 
 
 # Start the poller
