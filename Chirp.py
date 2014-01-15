@@ -13,6 +13,7 @@ sys.path.append('python-twitter-1.1')
 class Chirpy(object):
   user = ""
   last_direct_message = ""
+  last_mention = ""
   follower_count = 0
   favourite_count = 0
   staged_retweet = 0
@@ -90,12 +91,26 @@ def chirp_get_followers():
 def chirp_get_direct_messages():
   print "chirp_get_direct_messages"
   dms = api.GetDirectMessages(since_id = chirp.last_direct_message)
-  print "All direct messages since the last one"
-  print dms
+
+  reset = false
 
   for dm in dms:
-    chirp.last_direct_message = dm.id
+    if(reset==false):
+      chirp.last_direct_message = dm.id
+      reset = true
     chirp_stage('dm', 1)
+
+def chirp_get_mentions():
+  print "chirp_get_mentions"
+  mentions = api.GetMentions(since_id = chrip.last_mention)
+
+  reset = false
+
+  for mention in mentions:
+    if(reset==false):
+      chirp.last_direct_message = mentions.id
+      reset = true
+    chirp_stage('mention', 1)
 
 def chirp_cycle():
   print "chirp_cycle"
@@ -128,10 +143,16 @@ chirp.user = api.GetUser(credentials.id)
 chirp.favourite_count = chirp.user.favourites_count
 
 # Set the initial direct message
-firstdm = api.GetDirectMessages(count=1)
+lastdm = api.GetDirectMessages(count=1)
 
-for dm in firstdm:
+for dm in lastdm:
   chirp.last_direct_message = dm.id
+
+# Set the initial mention
+lastmention = api.GetMentions(count=1)
+
+for lm in lastmention
+  chrip.last_mention = lm.id
 
 print "Checking motors"
 chirp_motor()
@@ -147,6 +168,7 @@ def twitter_poll():
   # Get things from the user
   chirp_get_followers()
   chirp_get_direct_messages()
+  chirp_get_mentions()
 
   chirp_cycle()
 
