@@ -30,6 +30,22 @@ class Chirpy(object):
 
 chirp = Chirpy()
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
+
 # ===========================================================================
 # Playing an audio file
 # ===========================================================================
@@ -117,7 +133,7 @@ def chirp_get_mentions():
     if(reset==0):
       chirp.last_direct_message = mention.id
       reset = 1 
-    print mention.text
+    print bcolors.OKGREEN + mention.text + bcolors.ENDC
     chirp_stage('mention', 1)
 
 def chirp_cycle():
@@ -167,7 +183,7 @@ for lm in lastmention:
   chirp.last_mention = lm.id
 
 def twitter_poll():
-  print "Polling twitter for the latest date"
+  print bcolors.HEADER + "Polling twitter for the latest date" + bcolors.ENDC
 
   # Reload the user object
   chirp.user = api.GetUser(credentials.id)
