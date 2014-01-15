@@ -7,6 +7,13 @@ sys.path.append('Adafruit_PWM_Servo_Driver')
 sys.path.append('python-twitter-1.1')
 
 # ===========================================================================
+# Load configuration
+# ===========================================================================
+
+config = {}
+execfile("chirp.conf", config)
+
+# ===========================================================================
 # Setting up the base class
 # ===========================================================================
 
@@ -128,15 +135,19 @@ def chirp_cycle():
   chirp.staged_directmessage = 0
 
 # ===========================================================================
-# Tweeting like a baws
+# Initializing
 # ===========================================================================
+
+print "Testing engines"
+chirp_motor()
+chirp_motor()
 
 import twitter
 
 print "Logging in to twitter"
 
 # Loggin into the api
-api = twitter.Api(consumer_key='H09pUgFTtCLw6crCAay7ow', consumer_secret='9fnAtbJafPZHXoFjaBiGJlM73hSW30bpKdaF9HuOw', access_token_key='15678818-dqIsqYhd63E1ZtsL0FtPzWrOhzDjUz5sDQ0G7V5kU', access_token_secret='RQoo0nqHRpPQKoUoNrQtD01pHAy5CPr0mTRk1jor4lvI7')
+api = twitter.Api(consumer_key=config["consumer_key"], consumer_secret=config["consumer_secret"], access_token_key=config["access_token_key"], access_token_secret=config["access_token_secret"])
 credentials = api.VerifyCredentials()
 
 # Getting the user object
@@ -154,11 +165,6 @@ lastmention = api.GetMentions(count=1)
 
 for lm in lastmention:
   chirp.last_mention = lm.id
-
-print "Checking motors"
-chirp_motor()
-time.sleep(1)
-chirp_motor()
 
 def twitter_poll():
   print "twitter_poll"
