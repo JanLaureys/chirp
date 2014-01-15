@@ -92,24 +92,25 @@ def chirp_get_direct_messages():
   print "chirp_get_direct_messages"
   dms = api.GetDirectMessages(since_id = chirp.last_direct_message)
 
-  reset = false
+  reset = 0 
 
   for dm in dms:
-    if(reset==false):
+    if(reset==0):
       chirp.last_direct_message = dm.id
-      reset = true
+      reset = 1 
     chirp_stage('dm', 1)
 
 def chirp_get_mentions():
   print "chirp_get_mentions"
-  mentions = api.GetMentions(since_id = chrip.last_mention)
+  mentions = api.GetMentions(since_id = chirp.last_mention)
 
-  reset = false
+  reset = 0 
 
   for mention in mentions:
-    if(reset==false):
-      chirp.last_direct_message = mentions.id
-      reset = true
+    if(reset==0):
+      chirp.last_direct_message = mention.id
+      reset = 1 
+    print mention.text
     chirp_stage('mention', 1)
 
 def chirp_cycle():
@@ -151,8 +152,8 @@ for dm in lastdm:
 # Set the initial mention
 lastmention = api.GetMentions(count=1)
 
-for lm in lastmention
-  chrip.last_mention = lm.id
+for lm in lastmention:
+  chirp.last_mention = lm.id
 
 print "Checking motors"
 chirp_motor()
