@@ -133,6 +133,11 @@ firstdm = api.GetDirectMessages(count=1)
 for dm in firstdm:
   chirp.last_direct_message = dm.id
 
+print "Checking motors"
+chirp_motor()
+time.sleep(1)
+chirp_motor()
+
 def twitter_poll():
   print "twitter_poll"
 
