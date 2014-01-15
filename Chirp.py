@@ -92,6 +92,12 @@ def chirp_motor():
   time.sleep(0.5)
   pwm.setPWM(3,0, servoMin)
 
+def chirp_nap():
+  print "Going to sleep for a minute"
+  for i in range(0, config["sleep_time"]):
+    dash = '='
+    print dash,
+
 def chirp_stage(type="", count= "1"):
   print "Chirp_stage"
   if(type=="retweet"):
@@ -104,7 +110,7 @@ def chirp_stage(type="", count= "1"):
     chirp.staged_directmessage = chirp.staged_directmessage + count
 
 def chirp_get_followers():
-  print "chirp_get_followers"
+  print "Checking for new followers..."
   newFollowersCount = chirp.user.followers_count - chirp.follower_count
   chirp.follower_count = chirp.user.followers_count
 
@@ -112,7 +118,7 @@ def chirp_get_followers():
     chirp_stage('followser', newFollowersCount)
 
 def chirp_get_direct_messages():
-  print "chirp_get_direct_messages"
+  print "Checking for new direct messages..."
   dms = api.GetDirectMessages(since_id = chirp.last_direct_message)
 
   reset = 0 
@@ -124,7 +130,7 @@ def chirp_get_direct_messages():
     chirp_stage('dm', 1)
 
 def chirp_get_mentions():
-  print "chirp_get_mentions"
+  print "Checking for new mentions..."
   mentions = api.GetMentions(since_id = chirp.last_mention)
 
   reset = 0 
@@ -147,6 +153,11 @@ def chirp_cycle():
     chirp_motor()
     time.sleep(1)
 
+  for mention in range(0, chirp.staged_mention):
+
+    chirp_motor()
+    time.sleep(1)
+
   chirp.staged_follower = 0
   chirp.staged_directmessage = 0
 
@@ -160,7 +171,7 @@ chirp_motor()
 
 import twitter
 
-print "Logging in to twitter"
+print "Logging in to twitter... This can take a few seconds..."
 
 # Loggin into the api
 api = twitter.Api(consumer_key=config["consumer_key"], consumer_secret=config["consumer_secret"], access_token_key=config["access_token_key"], access_token_secret=config["access_token_secret"])
@@ -183,7 +194,8 @@ for lm in lastmention:
   chirp.last_mention = lm.id
 
 def twitter_poll():
-  print bcolors.HEADER + "Polling twitter for the latest date" + bcolors.ENDC
+
+  print '\n' + bcolors.HEADER + "Polling twitter to check for new notifications" + bcolors.ENDC
 
   # Reload the user object
   chirp.user = api.GetUser(credentials.id)
@@ -194,12 +206,9 @@ def twitter_poll():
   chirp_get_mentions()
 
   chirp_cycle()
+  # Taking a nap for a minute
+  chirp_nap()
 
-  print "Going to sleep for a minute"
-  print "=================================================================="
-
-  time.sleep(60)
-  twitter_poll()
 
 # Start the poller
 twitter_poll()
