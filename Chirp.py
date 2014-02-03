@@ -87,11 +87,11 @@ def setServoPulse(channel, pulse):
   pwm.setPWM(3,0,servoMin)                # Reset the motor to the initial setting
 
 def chirp_motor():
-  pwm.setPWM(3, 0, servoMin)
+  pwm.setPWM(2, 0, servoMin)
   time.sleep(0.333)
-  pwm.setPWM(3, 0, servoMax)
+  pwm.setPWM(2, 0, servoMax)
   time.sleep(0.5)
-  pwm.setPWM(3,0, servoMin)
+  pwm.setPWM(2,0, servoMin)
 
 def chirp_nap():
   print "Going to sleep for a minute"
