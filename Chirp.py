@@ -51,12 +51,13 @@ class bcolors:
 # ===========================================================================
 
 import pygame
-pygame.mixer.init()
-pygame.mixer.music.load("test.wav")
-pygame.mixer.music.set_volume(1.0)
+#  pygame.mixer.init()
+#  pygame.mixer.music.load("test.wav")
+#  pygame.mixer.music.set_volume(1.0)
 
 def chirp_sound():
-  pygame.mixer.music.play()
+  print "It should play sound now !"
+  # pygame.mixer.music.play()
 
 # ===========================================================================
 # Controlling the servo
@@ -136,7 +137,7 @@ def chirp_get_mentions():
 
   for mention in mentions:
     if(reset==0):
-      chirp.last_direct_message = mention.id
+      chirp.last_mention = mention.id
       reset = 1 
     print bcolors.OKGREEN + mention.text + bcolors.ENDC
     chirp_stage('mention', 1)
@@ -159,6 +160,7 @@ def chirp_cycle():
 
   chirp.staged_follower = 0
   chirp.staged_directmessage = 0
+  chirp.staged_mention = 0
 
 # ===========================================================================
 # Initializing
@@ -207,7 +209,7 @@ def twitter_poll():
   chirp_cycle()
   # Taking a nap for a minute
   chirp_nap()
-  twitter_poll()git 
+  twitter_poll()
 
 
 # Start the poller
