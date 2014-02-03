@@ -84,7 +84,7 @@ def setServoPulse(channel, pulse):
   pwm.setPWM(channel, 0, pulse)
 
   pwm.setPWMFreq(60)                        # Set frequency to 60 Hz
-  pwm.setPWM(3,0,servoMin)                # Reset the motor to the initial setting
+  pwm.setPWM(2,0,servoMin)                # Reset the motor to the initial setting
 
 def chirp_motor():
   pwm.setPWM(2, 0, servoMin)
