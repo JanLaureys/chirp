@@ -51,13 +51,13 @@ class bcolors:
 # ===========================================================================
 
 import pygame
-#  pygame.mixer.init()
-#  pygame.mixer.music.load("test.wav")
-#  pygame.mixer.music.set_volume(1.0)
+ pygame.mixer.init()
+  pygame.mixer.music.load("mention.wav")
+  pygame.mixer.music.set_volume(1.0)
 
 def chirp_sound():
   print "It should play sound now !"
-  # pygame.mixer.music.play()
+  pygame.mixer.music.play()
 
 # ===========================================================================
 # Controlling the servo
@@ -88,6 +88,7 @@ def setServoPulse(channel, pulse):
 
 def chirp_motor():
   print "Chirp !"
+  chirp_sound()
   pwm.setPWM(3, 0, servoMin)
   time.sleep(0.333)
   pwm.setPWM(3, 0, servoMax)
@@ -100,7 +101,7 @@ def chirp_nap():
   time.sleep(60)
 
 def chirp_stage(type="", count= "1"):
-  print "Chirp_stage"
+  print "New notification !"
   if(type=="retweet"):
     chirp.staged_retweet = chirp.staged_retweet + count
   if(type=="follower"):
@@ -168,7 +169,6 @@ def chirp_cycle():
 # ===========================================================================
 
 print "Testing engines"
-chirp_motor()
 chirp_motor()
 
 import twitter
