@@ -154,8 +154,18 @@ def chirp_get_mentions():
     chirp_stage('mention', 1)
 
 def chirp_get_search():
-  print "Searching for " + config['search_term']
-  searches = api.getSearch(term=config['search_term'], since_id = chirp.last_search)
+  print "Searching for " + config["search_term"]
+  searches = api.getSearch(term=config["search_term"], since_id = chirp.last_search)
+
+  reset = 0
+
+  for search in search:
+    if(reset==0):
+      chirp.last_search = search.id
+      reset = 1
+      print search.text
+    chirp_stage('search', 1)
+
 
 
 def chirp_cycle():
@@ -215,6 +225,12 @@ lastmention = api.GetMentions(count=1)
 
 for lm in lastmention:
   chirp.last_mention = lm.id
+
+# Set the initial search
+lastsearch = api.GetSearch(count=1, term=config["search_term"])
+
+for ls in lastsearch:
+  chirp.last_search = ls.id
 
 def twitter_poll():
 
