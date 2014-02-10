@@ -58,7 +58,7 @@ def chirp_sound(type="dm"):
     pygame.mixer.music.load('dm.wav')
   if(type=="follower"):
     pygame.mixer.music.load('follower.wav')
-  if(type="retweet"):
+  if(type=="retweet"):
     pygame.mixer.music.load('mention.wav')
   print "It should play sound now !"
   pygame.mixer.music.play()
