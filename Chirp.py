@@ -155,7 +155,7 @@ def chirp_get_mentions():
 
 def chirp_get_search():
   print "Searching for " + config["search_term"]
-  searches = api.getSearch(term=config["search_term"], since_id = chirp.last_search)
+  searches = api.GetSearch(term=config["search_term"], since_id = chirp.last_search)
 
   reset = 0
 
