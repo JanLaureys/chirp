@@ -51,7 +51,7 @@ class bcolors:
 # ===========================================================================
 
 import pygame
- pygame.mixer.init()
+  pygame.mixer.init()
   pygame.mixer.music.load("mention.wav")
   pygame.mixer.music.set_volume(1.0)
 
