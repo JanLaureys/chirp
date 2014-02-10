@@ -159,7 +159,7 @@ def chirp_get_search():
 
   reset = 0
 
-  for search in search:
+  for search in searches:
     if(reset==0):
       chirp.last_search = search.id
       reset = 1
