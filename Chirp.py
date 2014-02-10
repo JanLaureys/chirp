@@ -31,20 +31,20 @@ class Chirpy(object):
 chirp = Chirpy()
 
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
+  HEADER = '\033[95m'
+  OKBLUE = '\033[94m'
+  OKGREEN = '\033[92m'
+  WARNING = '\033[93m'
+  FAIL = '\033[91m'
+  ENDC = '\033[0m'
 
-    def disable(self):
-        self.HEADER = ''
-        self.OKBLUE = ''
-        self.OKGREEN = ''
-        self.WARNING = ''
-        self.FAIL = ''
-        self.ENDC = ''
+  def disable(self):
+    self.HEADER = ''
+    self.OKBLUE = ''
+    self.OKGREEN = ''
+    self.WARNING = ''
+    self.FAIL = ''
+    self.ENDC = ''
 
 # ===========================================================================
 # Playing an audio file
@@ -52,10 +52,14 @@ class bcolors:
 
 import pygame
 pygame.mixer.init()
-pygame.mixer.music.load("mention.wav")
-pygame.mixer.music.set_volume(1.0)
 
-def chirp_sound():
+def chirp_sound(type="dm"):
+  if(type=="dm"):
+    pygame.mixer.music.load('dm.wav')
+  if(type=="follower"):
+    pygame.mixer.music.load('follower.wav')
+  if(type="retweet"):
+    pygame.mixer.music.load('mention.wav')
   print "It should play sound now !"
   pygame.mixer.music.play()
 
@@ -88,7 +92,6 @@ def setServoPulse(channel, pulse):
 
 def chirp_motor():
   print "Chirp !"
-  chirp_sound()
   pwm.setPWM(3, 0, servoMin)
   time.sleep(0.333)
   pwm.setPWM(3, 0, servoMax)
@@ -148,15 +151,16 @@ def chirp_cycle():
   print "chirp_cycle"
   for follower in range(0, chirp.staged_follower):
     chirp_motor()
+    chirp_sound('follower')
     time.sleep(1)
 
   for dm in range(0, chirp.staged_directmessage):
-
+    chirp_sound('dm')
     chirp_motor()
     time.sleep(1)
 
   for mention in range(0, chirp.staged_mention):
-
+    chirp_sound('retweet')
     chirp_motor()
     time.sleep(1)
 
