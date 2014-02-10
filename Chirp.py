@@ -23,10 +23,12 @@ class Chirpy(object):
   last_mention = ""
   follower_count = 0
   favourite_count = 0
+  search_count = 0
   staged_retweet = 0
   staged_directmessage = 0
   staged_mention = 0
   staged_follower = 0
+  staged_search = 0
 
 chirp = Chirpy()
 
@@ -60,6 +62,8 @@ def chirp_sound(type="dm"):
     pygame.mixer.music.load('follower.wav')
   if(type=="retweet"):
     pygame.mixer.music.load('mention.wav')
+  if(type=="search"):
+    pygame.mixer.music.load('dm.wav')
   print "It should play sound now !"
   pygame.mixer.music.play()
 
@@ -111,6 +115,8 @@ def chirp_stage(type="", count= "1"):
     chirp.staged_follower = chirp.staged_follower + count
   if(type=="mention"):
     chirp.staged_mention = chirp.staged_mention + count
+  if(type=="search"):
+    chirp.staged_search = chirp.staged_search + count
   if(type=="dm"):
     chirp.staged_directmessage = chirp.staged_directmessage + count
 
@@ -147,6 +153,11 @@ def chirp_get_mentions():
     print bcolors.OKGREEN + mention.text + bcolors.ENDC
     chirp_stage('mention', 1)
 
+def chirp_get_search():
+  print "Searching for " + config['search_term']
+  searches = api.getSearch(term=config['search_term'], since_id = chirp.last_search)
+
+
 def chirp_cycle():
   print "chirp_cycle"
   for follower in range(0, chirp.staged_follower):
@@ -164,9 +175,15 @@ def chirp_cycle():
     chirp_motor()
     time.sleep(1)
 
+  for search in range(0, chirp.staged_search):
+    chirp_sound('search')
+    chirp.motor()
+    time.sleep(1)
+
   chirp.staged_follower = 0
   chirp.staged_directmessage = 0
   chirp.staged_mention = 0
+  chirp.staged_search = 0
 
 # ===========================================================================
 # Initializing
@@ -210,6 +227,7 @@ def twitter_poll():
   chirp_get_followers()
   chirp_get_direct_messages()
   chirp_get_mentions()
+  chirp_get_search()
 
   chirp_cycle()
   # Taking a nap for a minute
